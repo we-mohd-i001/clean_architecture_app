@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Text(
             buttonText,
-            style: themeData.textTheme.headlineSmall,
+            style: themeData.textTheme.titleLarge,
           ),
         ));
     // InkResponse(
