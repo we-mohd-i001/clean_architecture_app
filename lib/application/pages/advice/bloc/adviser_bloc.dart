@@ -5,11 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'adviser_event.dart';
 part 'adviser_state.dart';
 
-
 const String generalFailureMessage = 'Oops! Something went wrong!';
 const String cacheFailureMessage = 'Oops! cache failed!';
 const String serverFailureMessage = 'Oops! Server error!';
-
 
 class AdviserBloc extends Bloc<AdviserEvent, AdviserState> {
   AdviserBloc() : super(AdviserInitial()) {
@@ -25,12 +23,9 @@ class AdviserBloc extends Bloc<AdviserEvent, AdviserState> {
             return generalFailureMessage;
         }
       }
-      print('Fake advice triggered!');
+
       emit(AdviserStateLoading());
       final failOrAdviceEntity = await adviceUseCase.getAdvice();
-      await Future.delayed(const Duration(seconds: 3), () {
-        print('waiting for 3 seconds...');
-      });
       failOrAdviceEntity.fold(
           (failure) => emit(AdviserStateError(_mapFailureToMessage(failure))),
           (advice) => emit(AdviserStateLoaded(advice.adviceMessage)));
