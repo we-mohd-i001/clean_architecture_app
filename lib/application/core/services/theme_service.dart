@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class ThemeService extends ChangeNotifier{
-  bool isDarkModeOn = false;
+  bool isDarkModeOn = true;
 
   void toggleTheme(){
     isDarkModeOn = !isDarkModeOn;
