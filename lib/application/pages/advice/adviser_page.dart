@@ -11,7 +11,8 @@ class AdviserPage extends StatelessWidget {
     final themeData = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        elevation: 12,
+        // centerTitle: true,
         title: Text(
           'Adviser',
           style: themeData.textTheme.headlineMedium,
@@ -21,16 +22,17 @@ class AdviserPage extends StatelessWidget {
               value: !Provider.of<ThemeService>(context).isDarkModeOn,
               onChanged: (_) {
                 Provider.of<ThemeService>(context, listen: false).toggleTheme();
-              })
+              }),
+          const SizedBox(width: 10,),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           children: const [
-            Expanded(child: Placeholder()),
+            Expanded(child: Center(child: CircularProgressIndicator())),
             Padding(
-              padding: EdgeInsets.only(top: 30, bottom: 80),
+              padding: EdgeInsets.only(top: 30, bottom: 60),
               child: CustomButton(buttonText: 'Get Advice'),
             ),
           ],
