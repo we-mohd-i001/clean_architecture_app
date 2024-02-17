@@ -1,11 +1,12 @@
-import 'package:clean_architecture_app/application/services/theme_service.dart';
+import 'package:clean_architecture_app/application/core/services/theme_service.dart';
+import 'package:clean_architecture_app/application/pages/advice/adviser_page.dart';
 import 'package:clean_architecture_app/theme/color_schemes/color_schemes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(create: (context) => ThemeService(), child: MyApp()),
+    ChangeNotifierProvider(create: (context) => ThemeService(), child: const MyApp()),
   );
 }
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         //   'counter': (context) => const CounterScreen(),
         //   'listview': (context) => const ListExample(),
         // },
-        home: const Placeholder(),
+        home: const AdviserPage(),
       );
     });
   }
