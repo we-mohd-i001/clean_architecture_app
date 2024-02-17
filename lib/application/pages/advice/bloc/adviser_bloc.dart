@@ -1,15 +1,16 @@
-import 'dart:async';
-
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'adviser_event.dart';
 part 'adviser_state.dart';
 
 class AdviserBloc extends Bloc<AdviserEvent, AdviserState> {
   AdviserBloc() : super(AdviserInitial()) {
-    on<AdviserEvent>((event, emit) {
-      // TODO: implement event handler
+    on<AdviceRequestedEvent>((event, emit) async {
+      emit(AdviserStateLoading());
+      print('Fake advice triggered!');
+      await Future.delayed(Duration(seconds: 3), () {});
+      emit(AdviserStateLoaded('Fake advice for testing bloc!'));
+      emit(AdviserStateError('Test erro!'));
     });
   }
 }
