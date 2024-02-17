@@ -1,12 +1,15 @@
 import 'package:clean_architecture_app/application/core/services/theme_service.dart';
 import 'package:clean_architecture_app/application/pages/advice/adviser_page.dart';
+import 'package:clean_architecture_app/application/pages/advice/bloc/adviser_bloc.dart';
 import 'package:clean_architecture_app/theme/color_schemes/color_schemes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(create: (context) => ThemeService(), child: const MyApp()),
+    ChangeNotifierProvider(
+        create: (context) => ThemeService(), child: const MyApp()),
   );
 }
 
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeService>(builder:(context, themeService, child){
+    return Consumer<ThemeService>(builder: (context, themeService, child) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -27,7 +30,10 @@ class MyApp extends StatelessWidget {
         //   'counter': (context) => const CounterScreen(),
         //   'listview': (context) => const ListExample(),
         // },
-        home: const AdviserPage(),
+        home: BlocProvider(
+          create: (context) => AdviserBloc(),
+          child: const AdviserPage(),
+        ),
       );
     });
   }
