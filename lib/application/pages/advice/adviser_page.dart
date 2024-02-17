@@ -1,8 +1,10 @@
 import 'package:clean_architecture_app/application/core/services/theme_service.dart';
+import 'package:clean_architecture_app/application/pages/advice/bloc/adviser_bloc.dart';
 import 'package:clean_architecture_app/application/pages/advice/widgets/advice_field.dart';
 import 'package:clean_architecture_app/application/pages/advice/widgets/custom_button.dart';
 import 'package:clean_architecture_app/application/pages/advice/widgets/error_message.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class AdviserPage extends StatelessWidget {
@@ -25,23 +27,39 @@ class AdviserPage extends StatelessWidget {
               onChanged: (_) {
                 Provider.of<ThemeService>(context, listen: false).toggleTheme();
               }),
-          const SizedBox(width: 10,),
+          const SizedBox(
+            width: 10,
+          ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
-          children: const [
-            SizedBox(height: 20,),
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
             Expanded(child: Center(
-                child:
-                ErrorMessage(errorMessageText: 'Oops! Something went wrong!')
-                //AdviceField(adviceText: '''"Example advice - Good things come with time!"''',),
-
-            //CircularProgressIndicator(),
-            //Text('Your advice is waiting for you!', style: themeData.textTheme.bodyLarge,)
+              child: BlocBuilder<AdviserBloc, AdviserState>(
+                  builder: (context, state) {
+                if (state is AdviserInitial) {
+                  return Text(
+                    'Your advice is waiting for you!',
+                    style: themeData.textTheme.bodyLarge,
+                  );
+                } else if (state is AdviserStateLoading) {
+                  return const CircularProgressIndicator();
+                } else if (state is AdviserStateLoaded) {
+                  return AdviceField(
+                    adviceText: '''"${state.advice}"''',
+                  );
+                } else if (state is AdviserStateError) {
+                  return ErrorMessage(errorMessageText: state.errorMessage);
+                }
+                return const SizedBox();
+              }),
             )),
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 30, bottom: 60),
               child: CustomButton(buttonText: 'Get Advice'),
             ),
