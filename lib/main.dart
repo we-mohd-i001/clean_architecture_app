@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeService>(builder:(context, themeService, child){
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: themeService.isDarkModeOn
             ? ThemeData(useMaterial3: true, colorScheme: lightColorScheme)
