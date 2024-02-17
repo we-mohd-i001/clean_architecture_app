@@ -16,8 +16,10 @@ class AdviceField extends StatelessWidget {
             color: themData.focusColor),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: Text(adviceText, style: themData.textTheme.headlineSmall,
-          textAlign: TextAlign.center,
+          child: Text(
+            adviceText,
+            style: themData.textTheme.headlineSmall,
+            textAlign: TextAlign.center,
           ),
         ),
       ),

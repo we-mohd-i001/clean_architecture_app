@@ -1,6 +1,7 @@
 import 'package:clean_architecture_app/application/core/services/theme_service.dart';
 import 'package:clean_architecture_app/application/pages/advice/widgets/advice_field.dart';
 import 'package:clean_architecture_app/application/pages/advice/widgets/custom_button.dart';
+import 'package:clean_architecture_app/application/pages/advice/widgets/error_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +35,8 @@ class AdviserPage extends StatelessWidget {
             SizedBox(height: 20,),
             Expanded(child: Center(
                 child:
-                AdviceField(adviceText: '''"Example advice - Good things come with time!"''',),
+                ErrorMessage(errorMessageText: 'Oops! Something went wrong!')
+                //AdviceField(adviceText: '''"Example advice - Good things come with time!"''',),
 
             //CircularProgressIndicator(),
             //Text('Your advice is waiting for you!', style: themeData.textTheme.bodyLarge,)
