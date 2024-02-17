@@ -5,6 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'adviser_event.dart';
 part 'adviser_state.dart';
 
+
+const String generalFailureMessage = 'Oops! Something went wrong!';
+const String cacheFailureMessage = 'Oops! cache failed!';
+const String serverFailureMessage = 'Oops! Server error!';
+
+
 class AdviserBloc extends Bloc<AdviserEvent, AdviserState> {
   AdviserBloc() : super(AdviserInitial()) {
     final AdviceUseCase adviceUseCase = AdviceUseCase();
@@ -12,11 +18,11 @@ class AdviserBloc extends Bloc<AdviserEvent, AdviserState> {
       String _mapFailureToMessage(Failures failure) {
         switch (failure.runtimeType) {
           case ServerFailure:
-            return 'Oops! Server error!';
+            return serverFailureMessage;
           case CacheFailure:
-            return 'Oops! cache failed!';
+            return cacheFailureMessage;
           default:
-            return 'Oops! Something went wrong!';
+            return generalFailureMessage;
         }
       }
       print('Fake advice triggered!');
