@@ -1,20 +1,33 @@
+import 'package:clean_architecture_app/application/core/services/theme_service.dart';
+import 'package:clean_architecture_app/application/pages/advice/adviser_page.dart';
+import 'package:clean_architecture_app/theme/color_schemes/color_schemes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (context) => ThemeService(), child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Clean Architecture',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-    );
+    return Consumer<ThemeService>(builder:(context, themeService, child){
+      return MaterialApp(
+        title: 'Flutter Demo',
+        theme: themeService.isDarkModeOn
+            ? ThemeData(useMaterial3: true, colorScheme: lightColorScheme)
+            : ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+        // routes: {
+        //   '/': (context) => const HomeScreen(),
+        //   'counter': (context) => const CounterScreen(),
+        //   'listview': (context) => const ListExample(),
+        // },
+        home: const AdviserPage(),
+      );
+    });
   }
 }
