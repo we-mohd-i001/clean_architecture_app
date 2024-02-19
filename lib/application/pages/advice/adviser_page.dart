@@ -2,6 +2,7 @@ import 'package:clean_architecture_app/application/core/services/theme_service.d
 import 'package:clean_architecture_app/application/pages/advice/bloc/adviser_bloc.dart';
 import 'package:clean_architecture_app/application/pages/advice/widgets/advice_field.dart';
 import 'package:clean_architecture_app/application/pages/advice/widgets/custom_button.dart';
+import 'package:clean_architecture_app/application/pages/advice/widgets/custom_circular_indicator.dart';
 import 'package:clean_architecture_app/application/pages/advice/widgets/error_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +49,7 @@ class AdviserPage extends StatelessWidget {
                     style: themeData.textTheme.bodyLarge,
                   );
                 } else if (state is AdviserStateLoading) {
-                  return const CircularProgressIndicator();
+                  return const CustomCircularIndicator();
                 } else if (state is AdviserStateLoaded) {
                   return AdviceField(
                     adviceText: '''"${state.advice}"''',
