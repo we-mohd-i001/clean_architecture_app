@@ -1,5 +1,6 @@
 import 'package:clean_architecture_app/data/datasources/advice_remote_data_resource.dart';
 import 'package:clean_architecture_app/data/models/advice_model.dart';
+import 'package:clean_architecture_app/domain/exceptions.dart';
 import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -23,6 +24,32 @@ void main() {
         final result =
             await adviceRemoteDataResourceUnderTest.getRandomAdviceFromApi();
         expect(result, AdviceModel(advice: 'test advice', id: 1));
+      });
+    });
+
+    group('should throw', () {
+      test('when client response was not 200', () async {
+        final mockClient = MockClient();
+        final adviceRemoteDataResourceUnderTest =
+        AdviceRemoteDataResourceImpl(client: mockClient);
+        when(mockClient
+            .get(Uri.parse('https://api.flutter-community.com/api/v1/advice'),
+            headers: {'content-type': 'application/json'})).thenAnswer(
+                (realInvocation) => Future.value(Response('', 201)));
+        expect(() => adviceRemoteDataResourceUnderTest.getRandomAdviceFromApi(), throwsA(isA<ServerException>()));
+
+      });
+      test('when client response was 200 and has no valid data', () {
+        final mockClient = MockClient();
+        final adviceRemoteDataResourceUnderTest =
+        AdviceRemoteDataResourceImpl(client: mockClient);
+        const responseBody = '{"advice" : "test advice"}';
+        when(mockClient
+            .get(Uri.parse('https://api.flutter-community.com/api/v1/advice'),
+            headers: {'content-type': 'application/json'})).thenAnswer(
+                (realInvocation) => Future.value(Response(responseBody, 200)));
+        expect(() => adviceRemoteDataResourceUnderTest.getRandomAdviceFromApi(), throwsA(isA<TypeError>()));
+
       });
     });
   });
