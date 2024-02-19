@@ -1,5 +1,5 @@
 import 'package:clean_architecture_app/application/pages/advice/bloc/adviser_bloc.dart';
-import 'package:clean_architecture_app/data/data_resource/advice_remote_data_resource.dart';
+import 'package:clean_architecture_app/data/datasources/advice_remote_data_resource.dart';
 import 'package:clean_architecture_app/data/repositories/advice_repo_impl.dart';
 import 'package:clean_architecture_app/domain/repositories/advice_repo.dart';
 import 'package:clean_architecture_app/domain/usecases/advice_use_case.dart';

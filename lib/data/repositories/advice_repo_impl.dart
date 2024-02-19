@@ -1,4 +1,4 @@
-import 'package:clean_architecture_app/data/data_resource/advice_remote_data_resource.dart';
+import 'package:clean_architecture_app/data/datasources/advice_remote_data_resource.dart';
 import 'package:clean_architecture_app/domain/entities/advice_entity.dart';
 import 'package:clean_architecture_app/domain/exceptions.dart';
 import 'package:clean_architecture_app/domain/repositories/advice_repo.dart';
