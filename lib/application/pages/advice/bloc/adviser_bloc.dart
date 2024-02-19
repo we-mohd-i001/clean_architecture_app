@@ -10,8 +10,9 @@ const String cacheFailureMessage = 'Oops! cache failed!';
 const String serverFailureMessage = 'Oops! Server error!';
 
 class AdviserBloc extends Bloc<AdviserEvent, AdviserState> {
-  AdviserBloc() : super(AdviserInitial()) {
-    final AdviceUseCase adviceUseCase = AdviceUseCase();
+  final AdviceUseCase adviceUseCase;
+  AdviserBloc({required this.adviceUseCase}) : super(AdviserInitial()) {
+
     on<AdviceRequestedEvent>((event, emit) async {
       String _mapFailureToMessage(Failures failure) {
         switch (failure.runtimeType) {
