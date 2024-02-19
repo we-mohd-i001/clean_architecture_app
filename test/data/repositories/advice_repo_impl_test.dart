@@ -39,7 +39,7 @@ void main() {
       });
     });
     group('should return left with', (){
-      test('a ServerFailure when a ServeEsception occurs', () async{
+      test('a ServerFailure when a ServeException occurs', () async{
         final mockadviceRemoteDataResourceImpl =
         MockAdviceRemoteDataResourceImpl();
         final adviceRepoImplUnderTest = AdviceRepoImpl(
@@ -51,7 +51,7 @@ void main() {
 
         expect(result.isLeft(), true);
         expect(result.isRight(), false);
-        expect(result, Left<Failures, AdviceEntity>(GeneralFailure()));
+        expect(result, Left<Failures, AdviceEntity>(ServerFailure()));
 
       });
       test('a GeneralFailure on all other Exceptions', () async{
