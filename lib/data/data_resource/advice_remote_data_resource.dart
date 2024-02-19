@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:clean_architecture_app/data/models/advice_model.dart';
+import 'package:clean_architecture_app/domain/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class AdviceRemoteDataResource {
@@ -8,13 +9,20 @@ abstract class AdviceRemoteDataResource {
 }
 
 class AdviceRemoteDataResourceImpl implements AdviceRemoteDataResource {
-  final client = http.Client();
+  final http.Client client;
+
+  AdviceRemoteDataResourceImpl({required this.client});
   @override
   Future<AdviceModel> getRandomAdviceFromApi() async {
     final response = await client.get(
         Uri.parse('https://api.flutter-community.com/api/v1/advice'),
         headers: {'content-type': 'application/json'});
-    final responseBody = jsonDecode(response.body);
-    return AdviceModel.fromJson(responseBody);
+
+    if (response.statusCode != 200){
+      throw ServerException();
+    } else {
+      final responseBody = jsonDecode(response.body);
+      return AdviceModel.fromJson(responseBody);
+    }
   }
 }
