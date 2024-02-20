@@ -63,11 +63,7 @@ class AdviserPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 30, bottom: 60),
               child: CustomButton(
-                buttonText: 'Get Advice',
-                onTap: () {
-                  BlocProvider.of<AdviserBloc>(context)
-                      .add(AdviceRequestedEvent());
-                },
+                buttonText: 'Get Advice'
               ),
             ),
           ],

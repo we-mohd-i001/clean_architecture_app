@@ -6,14 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonText;
-  final Function()? onTap;
-  const CustomButton({super.key, required this.buttonText, required this.onTap});
+  const CustomButton({super.key, required this.buttonText});
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return ElevatedButton(
       style: const ButtonStyle(elevation: MaterialStatePropertyAll(12.0)),
-        onPressed: onTap?.call(),
+        onPressed: () {
+          BlocProvider.of<AdviserBloc>(context)
+              .add(AdviceRequestedEvent());
+        },
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Text(
