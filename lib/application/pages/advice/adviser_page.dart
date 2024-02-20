@@ -60,9 +60,11 @@ class AdviserPage extends StatelessWidget {
                 return const SizedBox();
               }),
             )),
-            const Padding(
-              padding: EdgeInsets.only(top: 30, bottom: 60),
-              child: CustomButton(buttonText: 'Get Advice'),
+            Padding(
+              padding: const EdgeInsets.only(top: 30, bottom: 60),
+              child: CustomButton(
+                buttonText: 'Get Advice'
+              ),
             ),
           ],
         ),

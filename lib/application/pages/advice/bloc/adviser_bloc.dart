@@ -1,5 +1,6 @@
 import 'package:clean_architecture_app/domain/failures/failures.dart';
 import 'package:clean_architecture_app/domain/usecases/advice_use_case.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'adviser_event.dart';
@@ -24,7 +25,6 @@ class AdviserBloc extends Bloc<AdviserEvent, AdviserState> {
             return generalFailureMessage;
         }
       }
-
       emit(AdviserStateLoading());
       final failOrAdviceEntity = await adviceUseCase.getAdvice();
       failOrAdviceEntity.fold(

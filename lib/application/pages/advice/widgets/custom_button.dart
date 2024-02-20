@@ -13,7 +13,8 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: const ButtonStyle(elevation: MaterialStatePropertyAll(12.0)),
         onPressed: () {
-        BlocProvider.of<AdviserBloc>(context).add(AdviceRequestedEvent());
+          BlocProvider.of<AdviserBloc>(context)
+              .add(AdviceRequestedEvent());
         },
         child: Padding(
           padding: const EdgeInsets.all(12.0),
