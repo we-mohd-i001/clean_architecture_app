@@ -74,7 +74,7 @@ void main() {
         expect(adviserLoadedStateFinder, findsOneWidget);
       });
       testWidgets(
-          'Error when bloc emits AdviserStateLoaded()', (widgetTester) async {
+          'Error when bloc emits AdviserStateError()', (widgetTester) async {
         whenListen(mockAdviserBloc, Stream.fromIterable([AdviserStateError('error')]),
           initialState: AdviserInitial(),
         );
