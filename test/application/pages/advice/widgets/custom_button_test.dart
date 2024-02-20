@@ -11,11 +11,10 @@ class MockOnCustomButtonTap extends Mock implements OnCustomButtonTap {}
 
 void main() {
   Widget widgetUnderMethod({Function()? callBack}) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
         body: CustomButton(
           buttonText: 'Get Advice',
-          onTap: callBack,
         ),
       ),
     );

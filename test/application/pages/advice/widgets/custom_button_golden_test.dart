@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main(){
   Widget widgetUnderTest({Function()? onTap}){
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
-        body: CustomButton(buttonText: 'Get Advice', onTap: onTap,),
+        body: CustomButton(buttonText: 'Get Advice'),
       ),
     );
   }
