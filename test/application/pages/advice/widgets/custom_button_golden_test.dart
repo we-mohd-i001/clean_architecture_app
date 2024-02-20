@@ -18,6 +18,12 @@ void main(){
 
         await expectLater(find.byType(CustomButton), matchesGoldenFile('goldens/custom_button_enabled.png'));
       });
+
+      testWidgets('is disabled', (widgetTester) async {
+        await widgetTester.pumpWidget(widgetUnderTest(onTap: () {}));
+
+        await expectLater(find.byType(CustomButton), matchesGoldenFile('goldens/custom_button_disabled.png'));
+      });
     });
   });
 }
