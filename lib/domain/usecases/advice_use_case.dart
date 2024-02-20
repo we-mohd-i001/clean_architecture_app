@@ -4,6 +4,7 @@ import 'package:clean_architecture_app/domain/failures/failures.dart';
 import 'package:clean_architecture_app/domain/repositories/advice_repo.dart';
 import 'package:dartz/dartz.dart';
 
+
 class AdviceUseCase {
   final AdviceRepo adviceRepoImpl;
 
